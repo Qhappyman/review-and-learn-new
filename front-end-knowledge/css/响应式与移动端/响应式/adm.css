@@ -1,0 +1,53 @@
+header {
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background-color: red;
+}
+#left {
+  float: left;
+  width: 200px;
+  height: 500px;
+  background-color: blue;
+}
+#right {
+  float: right;
+  width: 200px;
+  height: 500px;
+  background-color: blue;
+}
+#main {
+  margin: 0 210px;
+  height: 500px;
+  background-color: green;
+  text-align: center;
+  line-height: 500px;
+}
+footer {
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background-color: red;
+}
+@media screen and (max-width: 980px) {
+  #left,
+  #right {
+    width: 100%;
+    height: 200px;
+  }
+  #right {
+    background-color: gray;
+    width: 100%;
+  }
+  #main {
+    width: 100%;
+    margin: 0 auto;
+  }
+  #main::after {
+    content: '111 ';
+    clear: both;
+  }
+  footer {
+    clear: both;
+  }
+}

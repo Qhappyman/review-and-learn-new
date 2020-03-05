@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="adm.css">
+    
+</head>
+<body>
+    <!-- <div id="div1">
+        <div id="div2">gjqa</div>
+    </div> -->
+
+    <!--俩边定宽，中间自适应，缺点：顺序不同，不好理解-->
+    <!-- <div id="div1"></div>
+    <div id="div3"></div>
+    <div id="div2"></div>
+
+<div id="contain"> 
+    <div id="div4"></div>
+    <div id="div5">123</div>
+    <div style="height: 50px; background-color:red">123</div>
+</div> -->
+
+<!--典型的布局方式，适应移动端-->
+<header>我是头部</header>
+<div id="left">我是左边</div>
+<div id="right">我是右边</div>
+<div id="main">我是中间</div>
+<footer>我是结尾</footer>
+
+<!--BFC三栏布局，利用BFC边框不重叠-->
+<!--缺点，main在最后面渲染，使得内容区呈现较慢-->
+<!-- <div id="left"></div>
+<div id="right"></div>
+<div id="center"></div> -->
+
+<!--双飞翼布局，主要使用margin负值对布局的影响-->
+<!--负margin会改变浮动元素的显示位置，即使我的元素写在DOM的后面，我也能让它显示在最前面-->
+<!-- <div class="content">
+    <div class="main"></div>
+</div>
+<div class="left"></div>
+<div class="right"></div> -->
+
+<!--圣杯布局，样式复杂，html简单-->
+<!-- <div class="container">
+	<div class="main"></div>
+	<div class="left"></div>
+	<div class="right"></div>
+</div> -->
+
+<!--flex布局，浏览器兼容性问题-->
+<!-- <div class="container">
+	<div class="main"></div>
+	<div class="left"></div>
+	<div class="right"></div>
+</div> -->
+
+<!--table布局，无法设置间隙-->
+<!-- <div class="container">
+	<div class="left"></div>
+	<div class="main"></div>
+	<div class="right"></div>
+</div> -->
+<!--绝对定位布局，很方便实用-->
+<!-- <div class="container">
+    <div class="main"></div>
+<div class="left"></div>
+<div class="right"></div>
+</div> -->
+
+
+
+<!--关于margin负值，分情况，margin-top可向上凸出，margin-left可向左凸出，margin所占的区域属于盒子本身，其他正常元素不可占用，所以使用margin负值可能导致原来正常文档无法写入元素-->
+<!-- <div style="width: 200px; height:300px; background-color:red; border:1px solid black;">
+    <div style="height: 100px; width:100px; background-color:green;margin-left:210px;"></div>
+    132
+</div> -->
+
+<!--应用于非浮动块时，它将非浮动块的边框边界移动到所有相关浮动元素外边界的下方。这个非浮动块的垂直外边距会折叠
+应用于浮动元素时，外边距不会重叠-->
+<!-- <div id="div1">
+    132
+</div>
+<div id="div2"></div> -->
+</body>
+</html>
