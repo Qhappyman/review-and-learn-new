@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="ajax" id="input1"/>
+    <script>
+        //基本ajax请求
+        let input1 = document.getElementById('input1');
+        input1.addEventListener('click',ajax);
+        function ajax(){
+        let xhr = new XMLHttpRequest();
+        document.cookie='hahaha=huo';
+        xhr.withCredentials = true;   //发送cookies必备
+        xhr.open('put','http://localhost:3000');
+        xhr.send();
+        xhr.onreadystatechange = ()=>{
+            if(xhr.readyState==4){
+                console.log(xhr.getResponseHeader('name'));  //获取头部信息
+                console.log('success');   
+            }
+        }
+    }
+
+    //封装jsonp:(只能发送get请求,有xss攻击,模拟script脚本)
+    function jsonp({url,params,cd}){               //返回一个Promise对象
+        return new Promise((resolve,reject)=>{
+            window[cd] = function(data){
+                resolve(data);                         //创建全局回调函数，接收参数返回的函数show
+                document.body.removeChild(script);   
+            }
+            params = {...params,cd};   //wd=b&cd=show   //将多个参数合并
+            let arr = [];
+            for(let key in params){      //将参数以 ..=.. 的格式放入arr中
+                arr.push(`${key}=${params[key]}`);
+            }
+            let script = document.createElement('script');  //创建script标签，用来引入接口
+            script.src = `${url}?${arr.join('&')}`;
+            document.body.appendChild(script);          //将接口插入文档
+        })
+    }
+
+    //百度接口
+    /*jsonp({                             //调用封装好的jsonp函数
+        url:"http://sp0.baidu.com/su",
+        params:{wd:'b'},
+        cd:'show'
+    }).then((data)=>{
+        console.log(data);      //回调函数处理,data即window[cd]=function(data){}中的后台返回数据
+    })*/
+
+    //本地服务器接口
+    jsonp({                             //调用封装好的jsonp函数
+        url:"http://localhost:3000",
+        params:{wd:'b'},
+        cd:'show'
+    }).then((data)=>{
+        console.log(data+132);      //回调函数处理,data即window[cd]=function(data){}中的后台返回数据
+    })
+    </script>
+
+
+<!--基本原理-->
+    <script src="http://sp0.baidu.com/su?wd=b&cb=show">
+         //jsonp
+    function show(data){
+        console.log(data);
+    }
+    //浏览器对script无跨域限制，通过script接入接口,接口参数cb返回一个函数show(...),在js里定义一个函数来接收返回值
+    </script>
+</body>
+</html>

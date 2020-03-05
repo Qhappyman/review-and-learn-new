@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    123
+    <script>
+        window.onmessage = function(e){    //对postMessage.html进行监听
+            console.log(e);
+            console.log(e.source.postMessage);
+            e.source.postMessage('我是postMessage2','http://localhost:8000/postMessage.html');   //scoure是window代理，拥有window方法，但不是window
+        }
+    </script>
+</body>
+</html>

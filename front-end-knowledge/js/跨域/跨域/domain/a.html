@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--必须是一级域名和二级域名的关系-->
+    <!--仅限主域相同，子域不同的跨域应用场景-->
+    <!--www.baidu.com-->
+    <!--viode.baidu.com-->
+    <!--a是通过http://a.zf.cn:3000/a.html访问,a.zf,b.zf访问的是同一个主机-->   
+    <iframe src="http://b.zf.cn:3000/b.html" frameborder="0" onload="load()" id="frame"></iframe> <!--b嵌入a页面中-->
+    <script>
+        document.domain='zf1.cn';  //与b统一域名，同一家企业
+        function load(){
+            let frame = document.getElementById('frame');
+            frame.contentWindow.a;    //跨域，无法访问
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<iframe src="http://localhost:8000/postMessage2.html" frameborder="0" id="frame" onload="load()"></iframe>
+    <script>
+        function load(){
+            let frame = document.getElementById('frame');
+            frame.contentWindow.postMessage('我是postMessage1','http://localhost:8000/postMessage2.html')  //第二个参数需要http格式，否则origin为null
+        }
+        window.onmessage = function(e){    //接受2返回的响应
+            console.log(1);
+            console.log(e.data);
+        }
+    </script>
+</body>
+</html>

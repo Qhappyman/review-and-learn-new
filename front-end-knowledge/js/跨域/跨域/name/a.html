@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--a,b同域，c独立
+    a获取c的数据
+    a先引用c c把值放到window.name，把a引用的地址改到b
+    -->
+    <iframe src="http://localhost:7000" frameborder="0" onload="load()" id="iframe"></iframe>  <!--链接必须使用http，可搭建ngnix服务器-->
+    <script>
+        let first = true;
+        function load(){
+            if(first){          //保证只在src为c.html时候执行
+            let iframe = document.getElementById('iframe');
+            iframe.src = 'http://localhost:8000/name/b.html';   //修改iframe链接
+            first = false;              //因为a,c不同域，只能先把c的name拿过来，再用b.html去代替，以便同源可以访问name，实际上是一种欺骗
+            }
+            else{
+                let iframe = document.getElementById('iframe');
+                console.log(iframe.contentWindow.name);   //获取到c.html中的name，实际上此时src为b.html
+            }
+        }
+    </script>
+</body>
+</html>
