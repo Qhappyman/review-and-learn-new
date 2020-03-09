@@ -7,3 +7,5 @@
 1. [跨域,nginx后续补充](https://github.com/Qhappyman/review-and-learn-new/tree/master/front-end-knowledge/js/%E8%B7%A8%E5%9F%9F)
 ### Vue篇
 ### 数据结构与算法篇
+### 浏览器
+1. [seo与搜索引擎](https://github.com/Qhappyman/review-and-learn-new/tree/master/front-end-knowledge/%E6%B5%8F%E8%A7%88%E5%99%A8/%E7%88%AC%E8%99%AB%E4%B8%8Eseo)
